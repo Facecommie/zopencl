@@ -101,7 +101,7 @@ pub const Platform = extern struct {
     }
 
     pub fn getDevices(platform: Platform, a: Allocator, device_type: DeviceType) ![]const Device {
-        comptime std.debug.assert(@sizeOf(Device) == @sizeOf(c.cl_device_id));
+        comptime assert(@sizeOf(Device) == @sizeOf(c.cl_device_id));
 
         var num_devices: uint = undefined;
         switch (c.clGetDeviceIDs(platform.id, @bitCast(device_type), 0, null, &num_devices)) {
